@@ -27,3 +27,8 @@ label {
 pre {
     white-space: pre-wrap;
 }
+
+footer {
+    margin-top: 3em;
+    text-align: center;
+}
