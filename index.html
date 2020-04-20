@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Visual Studio Codespaces environment link creator</title>
+    <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+    <h1>Generate Visual Studio Codespaces creation link</h1>
+
+    <fieldset>
+        <legend>Environment details</legend>
+
+        <label for="name">
+            <span>Environment name</span>
+            <input type="text" id="name" value="" />
+        </label>
+
+        <label for="name">
+            <span>Repository</span>
+            <input type="text" id="repo" value="" />
+        </label>
+    </fieldset>
+
+    <p><strong>Url:</strong></p>
+    <pre id="raw"></pre>
+    <p><strong>Markdown:</strong></p>
+    <pre id="markdown"></pre>
+
+    <script>
+        var iName = document.getElementById("name");
+        var iRepo = document.getElementById("repo");
+
+        function generateLink() {
+            var name = encodeURIComponent(iName.value);
+            var repo = encodeURIComponent(iRepo.value);
+            var instance = "premiumWindows";
+            var baseUrl = "https://env.new/environments/new";
+
+            var url = `${baseUrl}?name=${name}&repo=${repo}&instanceType=${instance}`;
+            var badge = `[![Open in Visual Studio Online](https://img.shields.io/endpoint?style=social&url=https%3A%2F%2Faka.ms%2Fvso-badge)](${url})`;
+
+            raw.innerHTML = url;
+            markdown.innerHTML = badge;
+        }
+
+        iName.addEventListener("keyup", generateLink);
+        iRepo.addEventListener("keyup", generateLink);
+    </script>
+</body>
+</html>

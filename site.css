@@ -1,0 +1,29 @@
+body {
+    max-width: 520px;
+    margin: 1em auto;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin: .5em;
+}
+
+    label span {
+        display: inline-block;
+        width: 150px;
+    }
+
+    label input {
+        width: 300px;
+        font: inherit;
+    }
+
+pre {
+    white-space: pre-wrap;
+}
