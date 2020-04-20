@@ -64,11 +64,13 @@
             raw.innerHTML = url;
             markdown.innerHTML = badge;
             btnTest.removeAttribute("disabled");
+            btnTest.setAttribute("data-url", url);
         }
 
         iName.addEventListener("keyup", generateLink);
         iRepo.addEventListener("keyup", generateLink);
-        btnTest.addEventListener("click", function () { window.open(raw.textContent, "_blank") });
+        sInstance.addEventListener("change", generateLink);
+        btnTest.addEventListener("click", function () { window.open(this.getAttribute("data-url"), "_blank") });
 
     </script>
 </body>
