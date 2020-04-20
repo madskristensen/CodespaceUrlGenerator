@@ -14,14 +14,29 @@
 
         <label for="name">
             <span>Environment name</span>
-            <input type="text" id="name" value="" />
+            <input type="text" id="name" placeholder="Any name you'd like" />
         </label>
 
         <label for="name">
             <span>Repository</span>
-            <input type="text" id="repo" value="" />
+            <input type="text" id="repo" placeholder="URL to repo" />
+        </label>
+
+        <label for="instance">
+            <span>Instance Type</span>
+            <select id="instance">
+                <optgroup label="Linux">
+                    <option value="standardLinux">Standard Linux</option>
+                    <option value="premiumLinux">Premium Linux</option>
+                </optgroup>
+                <optgroup label="Windows">
+                    <option value="premiumWindows">Premium Windows</option>
+                </optgroup>
+            </select>
         </label>
     </fieldset>
+
+    <button id="btnTest" disabled>Test</button>
 
     <p><strong>Url:</strong></p>
     <pre id="raw"></pre>
@@ -35,22 +50,26 @@
     <script>
         var iName = document.getElementById("name");
         var iRepo = document.getElementById("repo");
+        var btnTest = document.getElementById("btnTest");
+        var sInstance = document.getElementById("instance");
 
         function generateLink() {
             var name = encodeURIComponent(iName.value);
             var repo = encodeURIComponent(iRepo.value);
-            var instance = "premiumWindows";
-            var baseUrl = "https://env.new/environments/new";
+            var instance = sInstance.value;
 
-            var url = `${baseUrl}?name=${name}&repo=${repo}&instanceType=${instance}`;
+            var url = `https://env.new/?name=${name}&repo=${repo}&instanceType=${instance}`;
             var badge = `[![Open in Visual Studio Online](https://img.shields.io/endpoint?style=social&url=https%3A%2F%2Faka.ms%2Fvso-badge)](${url})`;
 
             raw.innerHTML = url;
             markdown.innerHTML = badge;
+            btnTest.removeAttribute("disabled");
         }
 
         iName.addEventListener("keyup", generateLink);
         iRepo.addEventListener("keyup", generateLink);
+        btnTest.addEventListener("click", function () { window.open(raw.textContent, "_blank") });
+
     </script>
 </body>
 </html>
